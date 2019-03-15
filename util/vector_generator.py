@@ -34,10 +34,11 @@ class Vector_generator:
 		'''
 		vector = word_tokenize( sentence )
 		# vector = sentence.split()
-		filtered_vector = []
-		for term in vector:
+		# filtered_vector = []
+		# for term in vector:
 			# root_term = self.lemmatizer.lemmatize(term)
-			root_term = term
-			if root_term not in self.stop_words: 
-				filtered_vector.append(root_term)
-		return filtered_vector
+			# root_term = term
+			# if root_term not in self.stop_words: 
+			# 	filtered_vector.append(root_term)
+		# return filtered_vector
+		return vector

@@ -2,17 +2,41 @@ import math
 from vector_generator import Vector_generator
 
 translation_list_test = [
-	"he goes to market",
-	"he goes to market",
-	"he goes to market",
-	"he went to the market",
-	"he goes to market",
-	"he goes to market",
-	"he goes to market",
-	"he goes to market",
-	"he goes to market",
-	"he goes to market",
-	"he goes to the market"
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am best",
+	"I am best",
+	"I am best",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
+	"I am good",
 ]
 
 class Score_generator:
@@ -29,6 +53,7 @@ class Score_generator:
 		vector_space = self.vector_space_generator( normalized_vector_list )
 		
 		mean_vector = self.find_mean( normalized_vector_list, vector_space )
+		mean_vector = self.normalize( [ mean_vector ] )[0]
 		standard_deviation = self.find_standard_deviation( mean_vector, normalized_vector_list )
 		distance_list = self.distance_list_generator( mean_vector, normalized_vector_list )
 		print distance_list
@@ -71,6 +96,8 @@ class Score_generator:
 		for element in mean_vector.keys():
 			if element in vector.keys():
 				distance += math.pow( mean_vector[ element ] - vector[ element ], 2 )
+			else:
+				distance += math.pow( mean_vector[ element ], 2 )
 		distance = math.sqrt( distance )
 		return distance
 
