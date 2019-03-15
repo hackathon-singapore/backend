@@ -59,6 +59,11 @@ class Score_generator:
 		print distance_list
 		print mean_vector
 		print standard_deviation
+		scores = self.rating_function( distance_list, standard_deviation, self.translation_threshold )
+		scored_translation_list = []
+		for index, score in enumerate( scores ):
+			scored_translation_list.append( { translation_list[ index ] : score } )
+		print scored_translation_list
 
 	def vector_space_generator( self, normalized_vector_list ):
 		vector_space = []
@@ -108,7 +113,11 @@ class Score_generator:
 			standard deviation of the whole distribution
 			translation threshold
 		'''
-		pass
+		scored_list = []
+		scale = 0.2 if translation_threshold > len( distance_list ) else 1 
+		for element in distance_list:
+			scored_list.append( 1/ ( element * (standard_deviation ** 2) ) )
+		return scored_list
 
 	def find_mean( self, normalized_vector_list, vector_space ):
 		'''
