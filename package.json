@@ -1,29 +1,10 @@
 {
-  "name": "indegenlang",
-  "version": "1.0.0",
-  "description": "Indegenous Language Recognition Fossasia",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Raj",
-  "license": "ISC",
-  "dependencies": {
-    "async": "^2.6.2",
-    "body-parser": "^1.18.3",
-    "connect-mongo": "^2.0.3",
-    "container": "0.0.2",
-    "cookie-parser": "^1.4.4",
-    "dependable": "^1.1.0",
-    "ejs": "^2.6.1",
-    "express": "^4.16.4",
-    "express-promise-router": "^3.0.3",
-    "express-session": "^1.15.6",
-    "formidable": "^1.2.1",
-    "http": "0.0.0",
-    "lodash": "^4.17.11",
-    "mongoose": "^5.4.19",
-    "path": "^0.12.7",
-    "session": "^0.1.0"
-  }
+	"name": "node-api",
+	"main": "server.js",
+	"dependencies": {
+		"express": "~4.0.0",
+		"mongoose": "~3.6.13",
+		"body-parser": "~1.0.1",
+		"mongodb": "latest"
+	}
 }
