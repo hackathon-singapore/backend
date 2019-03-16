@@ -35,7 +35,7 @@ router.get('/',function(req,res){
 });
 
 // Route 1
-router.post('/bears',function(req,res){
+router.post('/sendsentence',function(req,res){
 	var bear = new Bear();
 	bear.name = req.body.name;		//Getting Post body data
 	bear.save(function(err){
@@ -48,55 +48,42 @@ router.post('/bears',function(req,res){
 });
 
 // Route2
-router.get('/bears',function(req,res){
-	Bear.find(function(err,result){
-		if(err){
-			res.send(err);
+router.post('/recievetranslation',function(req,res){
+	var bear = new Bear();
+	bear.name = req.body.name;		//Getting Post body data
+	bear.save(function(err){
+		if (err) {
+			res.send("error");
 		}
-		res.json(result);
-		
+		res.json({message:"Bear created!"});
+		console.log(req.body.name+" bear created!");
 	});
 });
 
 // Route3
-router.get('/bears/:bear_id',function(req,res){
-	Bear.findById(req.params.bear_id,function(err,result){		//Same as Bear.find({'_id:id'},function())
-		if(err){
-			console.log(err);
+router.post('/getalldata',function(req,res){
+	var bear = new Bear();
+	bear.name = req.body.name;		//Getting Post body data
+	bear.save(function(err){
+		if (err) {
+			res.send("error");
 		}
-		res.json(result);
+		res.json({message:"Bear created!"});
+		console.log(req.body.name+" bear created!");
 	});
 });
 
 // Route4
-router.put('/bears/:bear_id',function(req,res){
-	Bear.findById(req.params.bear_id,function(err,result){		//Same as Bear.find({'_id:id'},function())
-		if(err){
-			console.log(err);
+router.post('/gettsne',function(req,res){
+	var bear = new Bear();
+	bear.name = req.body.name;		//Getting Post body data
+	bear.save(function(err){
+		if (err) {
+			res.send("error");
 		}
-		result.name = req.body.name;
-		result.save(function(err){
-			if(err){
-				console.log("Unable to update!!");
-				res.send(err);
-			}
-			res.json({message:"Bear Updated"});
-		});
+		res.json({message:"Bear created!"});
+		console.log(req.body.name+" bear created!");
 	});
-});
-
-// Route5
-router.delete('/bears/:bear_id',function(req,res){
-	console.log(req.params.bear_id);
-	Bear.remove({_id:req.params.bear_id},function(err){
-		if(err){
-			console.log("Could not delete!");
-		}
-		else{
-			console.log("Delete success");
-			res.json({message:"Bear deleted"});
-		}
-	})
 });
 
 // More routes here............
