@@ -105,4 +105,4 @@ class Score_generator:
 		sum = 0
 		for vector in normalized_vector_list:
 			sum += math.pow( self.distance( mean_vector, vector ), 2 )
-		return math.sqrt( sum / ( len( normalized_vector_list ) - 1 ) )
+		return math.sqrt( sum / ( len( normalized_vector_list ) ) )
