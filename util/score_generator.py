@@ -27,7 +27,17 @@ class Score_generator:
 			scored_translation_list.append( { translation_list[ index ] : score } )
 
 		tsne_output = self.graph_generator.reduce_dims( normalized_vector_list, normalized_mean_vector )
-		return tsne_output, scored_translation_list
+		max_score = 0
+		best_fit = ''
+		for element in scored_translation_list:
+			if max_score < element.values()[0]:
+				max_score = element.values()[0]
+				best_fit = element.keys()
+			else:
+				continue
+		print tsne_output 
+		print best_fit
+		print max_score
 
 	def vector_space_generator( self, normalized_vector_list ):
 		vector_space = []
