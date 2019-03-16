@@ -2,10 +2,6 @@ import math
 from vector_generator import Vector_generator
 from tsne import Graph_generator
 
-print [[10.899605751037598, 24.466651916503906], [-9.999688148498535, 146.5867156982422], [73.94375610351562, 5.9575371742248535], [22.503021240234375, 92.1237564086914], [59.390899658203125, 150.0269775390625], [-38.17084884643555, 73.66172790527344], [118.52869415283203, 121.38504028320312], [74.10530853271484, 72.22064971923828], [132.8054656982422, 49.541019439697266]]
-print ['He went to the market']
-print 4.82338572345 
-
 
 class Score_generator:
 	def __init__( self, translation_threshold=10 ):
@@ -42,7 +38,7 @@ class Score_generator:
 				continue
 		print tsne_output 
 		print best_fit
-		print max_score
+		print 1 - standard_deviation
 
 	def vector_space_generator( self, normalized_vector_list ):
 		vector_space = []
@@ -93,9 +89,8 @@ class Score_generator:
 			translation threshold
 		'''
 		scored_list = []
-		scale = 0.2 if translation_threshold > len( distance_list ) else 1 
 		for element in distance_list:
-			scored_list.append( 1/ ( element * (standard_deviation ** 2) ) )
+			scored_list.append( (1 / element) )
 		return scored_list
 
 	def find_mean( self, normalized_vector_list, vector_space ):
