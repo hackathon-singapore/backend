@@ -1,48 +1,12 @@
 import math
 from vector_generator import Vector_generator
-
-translation_list_test = [
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am best",
-	"I am best",
-	"I am best",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-	"I am good",
-]
+from tsne import Graph_generator
 
 class Score_generator:
 	def __init__( self, translation_threshold=10 ):
 		self.translation_threshold = translation_threshold
 		self.vector_generator = Vector_generator( )
+		self.graph_generator = Graph_generator()
 
 	def score( self, translation_list ):
 		'''
@@ -53,17 +17,17 @@ class Score_generator:
 		vector_space = self.vector_space_generator( normalized_vector_list )
 		
 		mean_vector = self.find_mean( normalized_vector_list, vector_space )
-		mean_vector = self.normalize( [ mean_vector ] )[0]
-		standard_deviation = self.find_standard_deviation( mean_vector, normalized_vector_list )
-		distance_list = self.distance_list_generator( mean_vector, normalized_vector_list )
-		print distance_list
-		print mean_vector
-		print standard_deviation
+		normalized_mean_vector = self.normalize( [ mean_vector ] )[0]
+		standard_deviation = self.find_standard_deviation( normalized_mean_vector, normalized_vector_list )
+		distance_list = self.distance_list_generator( normalized_mean_vector, normalized_vector_list )
+
 		scores = self.rating_function( distance_list, standard_deviation, self.translation_threshold )
 		scored_translation_list = []
 		for index, score in enumerate( scores ):
 			scored_translation_list.append( { translation_list[ index ] : score } )
-		print scored_translation_list
+
+		tsne_output = self.graph_generator.reduce_dims( normalized_vector_list, normalized_mean_vector )
+		return tsne_output, scored_translation_list
 
 	def vector_space_generator( self, normalized_vector_list ):
 		vector_space = []
@@ -142,6 +106,3 @@ class Score_generator:
 		for vector in normalized_vector_list:
 			sum += math.pow( self.distance( mean_vector, vector ), 2 )
 		return math.sqrt( sum / ( len( normalized_vector_list ) - 1 ) )
-
-score_generator = Score_generator()
-score_generator.score( translation_list_test )
