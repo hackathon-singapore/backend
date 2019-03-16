@@ -3,10 +3,18 @@ const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema({
     id: { type: String, unique: true },
-    english: [{
+    translations: [{
         translation: {type: String, default: ''},
     }],
-    hindi: { type: String, unique: false, default: 'Namastey' },
+    indigenous: { type: String, unique: false, default: '' },
+    best_translation: { type: String },
+    best_score: { type: String },
+    tsne: [
+        {
+            x: { type: String },
+            y: { type: String }
+        }
+    ]
 });
 
 module.exports = mongoose.model('User', userSchema);
