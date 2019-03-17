@@ -76,13 +76,12 @@ def getalldata():
             with sqlite3.connect("database.db") as con:
                 cur = con.cursor()
                 cur.execute("SELECT * from original")
-                print cur.fetchone()
-
+                rows = cur.fetchall(); 
                 con.commit()
-                return jsonify(msg="Original added successfully")
+                return jsonify(code=200,rows=rows)
         except:
             con.rollback()
-            return jsonify(msg="API failed")
+            return jsonify(code=500)
 
         finally:
             con.close()
