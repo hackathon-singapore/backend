@@ -4,7 +4,8 @@ conn = sqlite3.connect('database.db')
 print "Opened database successfully"
 
 conn.execute('CREATE TABLE original ( id INTEGER PRIMARY KEY, sentences TEXT)')
-conn.execute('CREATE TABLE translations(sentences TEXT, original_id NUMBER)')
+conn.execute('CREATE TABLE output ( id INTEGER PRIMARY KEY, org_id INTEGER, sentences TEXT, score REAL, tsne STRING)')
+conn.execute('CREATE TABLE translations(sentences TEXT, org_id INTEGER)')
 
 conn.execute('INSERT INTO original (sentences) VALUES ( "org sent 1" )')
 conn.execute('INSERT INTO original (sentences) VALUES ( "org sent 2" )')
